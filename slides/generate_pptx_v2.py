@@ -52,11 +52,12 @@ def add_note(slide, text):
 def content_scaffold(slide, idx_label):
     """Charcoal side band + slide number in gold."""
     rect(slide, 0, 0, BAND_W, SH, CHARCOAL)
-    tb = slide.shapes.add_textbox(0, Inches(6.85), BAND_W, Inches(0.5))
+    tb = slide.shapes.add_textbox(0, Inches(6.9), BAND_W, Inches(0.45))
+    tb.text_frame.margin_left = tb.text_frame.margin_right = 0
     p = tb.text_frame.paragraphs[0]
     p.text = idx_label
     p.alignment = PP_ALIGN.CENTER
-    p.font.size, p.font.bold, p.font.color.rgb = Pt(12), True, GOLD
+    p.font.size, p.font.bold, p.font.color.rgb = Pt(11), True, GOLD
 
 
 def main():
@@ -133,9 +134,16 @@ def main():
 
         body_top = Inches(1.5)
         if image:
-            slide.shapes.add_picture(image, Inches(2.0), body_top, height=Inches(4.2))
-            body_top = Inches(5.85)
-            body_h = Inches(1.45)
+            # fit image inside a max box, centered over the content area
+            from PIL import Image as PILImage
+            iw, ih = PILImage.open(image).size
+            max_w, max_h = 11.3, 4.2
+            w_in = min(max_w, iw * max_h / ih)
+            h_in = w_in * ih / iw
+            left = Inches(0.45 + (12.88 - w_in) / 2)
+            slide.shapes.add_picture(image, left, body_top, width=Inches(w_in))
+            body_top = Inches(1.55 + h_in + 0.15)
+            body_h = Inches(7.3 - (1.55 + h_in + 0.15))
         else:
             body_h = Inches(5.5)
 
