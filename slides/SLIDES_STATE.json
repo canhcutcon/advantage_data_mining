@@ -1,0 +1,14 @@
+{
+  "phase": 8,
+  "venue": "NeurIPS",
+  "talk_type": "oral",
+  "talk_minutes": 15,
+  "slide_count": 17,
+  "language": "vi",
+  "engine": "xelatex",
+  "source": "../bao_cao_rare_pattern_mining.md",
+  "codex_thread_id": null,
+  "codex_review": "skipped — mcp__codex__codex not available in this environment",
+  "status": "completed",
+  "timestamp": "2026-06-12T00:00:00"
+}
