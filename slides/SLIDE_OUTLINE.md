@@ -12,7 +12,7 @@
 | 2 | Nội dung trình bày | 0:20 | 0:35 |
 | 3 | Động cơ: mẫu hiếm nhưng giá trị cao | 1:00 | 1:35 |
 | 4 | Vấn đề: hạ minsup là không đủ | 1:00 | 2:35 |
-| 5 | Ví dụ chạy xuyên suốt (4 giao dịch) | 0:45 | 3:20 |
+| 5 | Ví dụ (4 giao dịch) | 0:45 | 3:20 |
 | 6 | Ba định nghĩa mẫu hiếm | 1:15 | 4:35 |
 | 7 | AprioriRare: tìm biên hiếm tối thiểu | 1:15 | 5:50 |
 | 8 | AprioriInverse: thu hẹp ngay từ đầu | 1:00 | 6:50 |
@@ -64,7 +64,7 @@
 
 **Nói**: Đặt vấn đề kỹ thuật. Đây là lý do lĩnh vực rare pattern mining ra đời. → "Trước hết, cần một ví dụ nhỏ để nói chuyện cụ thể." *(1:00)*
 
-## Slide 5 — Ví dụ chạy xuyên suốt
+## Slide 5 — Ví dụ
 
 - Bảng 4 giao dịch: T1 {pasta, lemon, bread, orange} … T4 {pasta, lemon, orange, cake}
 - minsup = 2 → **11 itemset phổ biến**
@@ -145,11 +145,11 @@
 ## Slide 13 — Cài đặt & kiểm chứng 100%
 
 - Python 3.13, **chỉ thư viện chuẩn**; TID-set dùng chung cho cả 3 thuật toán
-- **19 assert** đối chiếu từng con số trong bài giảng — **100% ĐẠT**
-- Phát hiện thiếu sót trong slide bài giảng: FIM liệt kê 10, **đúng là 11** (sót {pasta, orange, cake})
+- **19 assert** đối chiếu từng con số kỳ vọng trên ví dụ — **100% ĐẠT**
+- Phủ FIM, AprioriRare, AprioriInverse, CORI & các độ đo
 - {pasta, cake}: lift = 1.0, bond = 0.5 → xác nhận mẫu giả bằng số
 
-**Nói**: Điểm tự hào của báo cáo: kiểm chứng tự động đủ chặt để bắt được lỗi của chính tài liệu gốc. *(1:00)*
+**Nói**: 19 assert phủ toàn bộ bảng FIM, ba thuật toán và các độ đo — tất cả khớp kết quả tính tay trên ví dụ minh họa. *(1:00)*
 
 ## Slide 14 — Exp A: cái giá của việc đi xuyên vùng phổ biến
 

@@ -15,8 +15,8 @@ Mining): so sánh ba định nghĩa hình thức (infrequent, minimal rare, perf
 itemset); phân tích ba thuật toán AprioriRare, AprioriInverse và CORI cùng các độ đo
 tương quan bond, all-confidence và tính null-invariance. Toàn bộ thuật toán được cài
 đặt lại bằng Python (thư viện chuẩn) và kiểm chứng tự động bằng 19 câu lệnh assert đối
-chiếu với từng con số trong bài giảng — đạt 100%, đồng thời phát hiện một thiếu sót
-nhỏ trong danh sách kết quả FIM của slide. Thực nghiệm trên bộ dữ liệu UCI Mushroom
+chiếu với kết quả tính tay trên ví dụ minh họa — đạt 100%. Thực nghiệm trên bộ dữ
+liệu UCI Mushroom
 (8 124 giao dịch) định lượng hóa các đánh đổi lý thuyết: chi phí duyệt vùng phổ biến
 của AprioriRare (45 391 itemset phổ biến để tìm 986 mRI ở minsup = 0.2), hiệu quả thu
 hẹp không gian của AprioriInverse, và chất lượng ngữ nghĩa của các mẫu hiếm tương quan
@@ -98,7 +98,7 @@ $sup(Y) \le sup(X)$. Apriori [1] khai thác tính chất này theo chiều rộn
 theo mức), còn Eclat [2] duyệt theo chiều sâu trên biểu diễn dọc (mỗi itemset giữ một
 TID-list — danh sách giao dịch chứa nó).
 
-**Ví dụ chạy xuyên suốt.** Báo cáo dùng CSDL 4 giao dịch trong bài giảng
+**Ví dụ.** Báo cáo dùng CSDL 4 giao dịch trong bài giảng
 (bảng 2.1) làm ví dụ chạy tay và kiểm chứng cài đặt.
 
 | Giao dịch | Các mục |
@@ -396,10 +396,10 @@ RAM 16 GB, macOS 15.5. Mã nguồn gồm hai tệp trong thư mục `code/`:
 của ứng viên mức $k$ được tính bằng **giao hai TID-set của cha** thay vì quét lại toàn
 bộ CSDL — đúng tinh thần Eclat [2] và cũng là cách CORI vận hành TID-List/DTID-List.
 
-## 4.2. Kiểm chứng đúng đắn trên ví dụ bài giảng
+## 4.2. Kiểm chứng đúng đắn trên ví dụ minh họa
 
 Tệp `run_experiments.py` đối chiếu **tự động bằng assert** kết quả cài đặt với *từng
-con số* in trong bài giảng: 19 câu lệnh assert phủ FIM, AprioriRare, AprioriInverse,
+con số* kỳ vọng đã tính tay trên ví dụ minh họa (bảng 2.1): 19 câu lệnh assert phủ FIM, AprioriRare, AprioriInverse,
 CORI và các độ đo (bond, all-confidence, TID/DTID-List) — một số assert kiểm đồng
 thời nhiều giá trị (toàn bộ bảng FIM, bond của mọi item đơn). **100% phép đối chiếu
 ĐẠT** (chi tiết: `results/sanity_check.md`), trong đó:
@@ -408,13 +408,7 @@ thời nhiều giá trị (toàn bộ bảng FIM, bond của mọi item đơn). 
 - AprioriInverse ($minsup = 1$, $maxsup = 1.9$): PRI = {{bread}: 1} (khớp); biến thể
   ($minsup = 1.1$, $maxsup = 3.1$): 5 PRI như mục 3.2 (khớp)
 - CORI ($maxsup = 3$, $minbond = 0.6$): {bread}, {cake}, {orange, cake} (khớp)
-- bond, all-confidence: khớp toàn bộ giá trị trong bài giảng, kể cả Tính chất 1 (khớp)
-
-Quá trình kiểm chứng phát hiện một **thiếu sót nhỏ trong slide bài giảng**: danh sách
-chữ ở trang "Example" (FIM, $minsup = 2$) liệt kê 10 itemset phổ biến, bỏ sót
-**{pasta, orange, cake}** ($sup = 2$, xuất hiện trong T3 và T4). Hình lattice ở đầu
-slide lại vẽ đúng node `poc` thuộc vùng phổ biến — tức kết quả đúng là **11** itemset.
-Việc đối chiếu tự động giúp phát hiện loại sai lệch này một cách hệ thống.
+- bond, all-confidence: khớp toàn bộ giá trị kỳ vọng, kể cả Tính chất 1 (khớp)
 
 Bảng độ đo cặp cho {pasta, cake} minh họa trực quan vấn đề mẫu giả (mục 2.3):
 $lift = 1.0$ và $bond = 0.5$ cho thấy cặp này không tương quan dù xuất hiện ở 50%
@@ -539,8 +533,7 @@ biểu đạt–chi phí của từng định nghĩa; qua ba thuật toán Aprio
 all-confidence [3] và vai trò của tính null-invariance [6] trong việc loại mẫu giả.
 
 Về thực hành, toàn bộ thuật toán được cài đặt từ đầu bằng Python và **kiểm chứng tự
-động 100% khớp** với mọi con số trong ví dụ bài giảng (quá trình này còn phát hiện một
-thiếu sót nhỏ trong danh sách kết quả FIM của slide). Thực nghiệm trên UCI Mushroom
+động 100% khớp** với mọi con số trong ví dụ minh họa. Thực nghiệm trên UCI Mushroom
 định lượng hóa rõ ràng ba đánh đổi lý thuyết: chi phí duyệt vùng phổ biến của
 AprioriRare (45 391 itemset phổ biến chỉ để tìm 986 mRI ở $minsup = 0.2$), tốc độ của
 AprioriInverse nhờ thu hẹp alphabet, và chất lượng ngữ nghĩa của các mẫu hiếm tương

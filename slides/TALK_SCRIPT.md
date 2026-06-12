@@ -43,7 +43,7 @@ Vì vậy lĩnh vực rare pattern mining cần cả ba mảnh ghép: định ng
 
 ---
 
-## Slide 5: Ví dụ chạy xuyên suốt [2:35 – 3:20]
+## Slide 5: Ví dụ [2:35 – 3:20]
 
 "Đây là cơ sở dữ liệu 4 giao dịch theo bài giảng. Em xin lưu ý một chi tiết: **pasta có mặt trong cả bốn giao dịch** — chi tiết này sẽ quay lại ở phần mẫu giả.
 
@@ -151,9 +151,7 @@ Chạy trên ví dụ cho đúng ba kết quả {bread}, {cake}, {orange, cake} 
 
 "Em cài đặt cả ba thuật toán bằng Python thuần, **chỉ dùng thư viện chuẩn**, trên cùng một biểu diễn TID-set — support của ứng viên tính bằng giao hai TID-set của cha thay vì quét lại dữ liệu.
 
-Về kiểm chứng: em viết **19 câu lệnh assert** đối chiếu **từng con số** trong bài giảng — FIM, AprioriRare, AprioriInverse, CORI, bond, all-confidence. Kết quả: **100% đạt**.
-
-Điều thú vị nhất: quá trình kiểm chứng bắt được một thiếu sót của chính slide bài giảng — danh sách FIM liệt kê 10 itemset, nhưng kết quả đúng là **11**: sót {pasta, orange, cake} với support bằng 2, trong khi hình lattice ở đầu slide lại vẽ đúng node này thuộc vùng phổ biến.
+Về kiểm chứng: em viết **19 câu lệnh assert** đối chiếu **từng con số** kỳ vọng đã tính tay trên ví dụ minh họa — phủ toàn bộ FIM, AprioriRare, AprioriInverse, CORI, bond, all-confidence. Kết quả: **100% đạt**.
 
 Và bảng độ đo cặp xác nhận bằng số trực giác mẫu giả: {pasta, cake} có lift đúng bằng 1.0 và bond 0.5 — không tương quan."
 

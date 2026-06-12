@@ -47,7 +47,7 @@ SLIDES = [
      "Hạ minsup làm dàn itemset bùng nổ; nhiều itemset không tồn tại trong dữ liệu. "
      "Chuyển: 'Để nói chuyện cụ thể, em dùng một ví dụ nhỏ.' (1:00)"),
 
-    ("Ví dụ chạy xuyên suốt", [
+    ("Ví dụ", [
         ("T1: pasta, lemon, bread, orange", 0, None, False),
         ("T2: pasta, lemon", 0, None, False),
         ("T3: pasta, orange, cake", 0, None, False),
@@ -126,12 +126,12 @@ SLIDES = [
 
     ("Cài đặt & kiểm chứng 100%", [
         ("Python 3.13, chỉ thư viện chuẩn; TID-set dùng chung cho cả 3 thuật toán", 0, None, False),
-        ("19 assert đối chiếu từng con số bài giảng — 100% ĐẠT", 0, GREEN, True),
-        ("Phát hiện thiếu sót trong slide gốc: FIM liệt kê 10, đúng là 11", 0, None, True),
-        ("(sót {pasta, orange, cake}, sup = 2)", 1, None, False),
+        ("19 assert đối chiếu từng con số kỳ vọng trên ví dụ — 100% ĐẠT", 0, GREEN, True),
+        ("Phủ FIM, AprioriRare, AprioriInverse, CORI & các độ đo", 0, None, False),
         ("{pasta, cake}: lift = 1.0, bond = 0.5 → xác nhận mẫu giả bằng số", 0, None, False),
     ], None,
-     "Kiểm chứng tự động đủ chặt để bắt được lỗi của chính tài liệu gốc. (1:00)"),
+     "19 assert phủ toàn bộ: bảng FIM, ba thuật toán, bond, all-confidence, "
+     "TID/DTID-List — tất cả khớp kết quả tính tay trên ví dụ minh họa. (1:00)"),
 
     ("Exp A — Cái giá của việc đi xuyên vùng phổ biến", [
         ("UCI Mushroom: 8 124 giao dịch, 118 item (dữ liệu dày)", 0, None, False),

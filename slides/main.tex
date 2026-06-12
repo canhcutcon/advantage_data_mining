@@ -98,7 +98,7 @@ ba phần tiếp theo. (1:00) Chuyển: ``Để nói chuyện cụ thể, em dù
 \end{frame}
 
 % ============ Slide 5: Running example ============
-\begin{frame}{Ví dụ chạy xuyên suốt}
+\begin{frame}{Ví dụ}
 \centering
 \begin{tabular}{cl}
 \toprule
@@ -237,15 +237,14 @@ và kiểm chứng tự động.''}
 \begin{frame}{Cài đặt \& kiểm chứng 100\%}
 \begin{itemize}\itemsep0.6em
   \item Python 3.13, \textbf{chỉ thư viện chuẩn}; TID-set dùng chung cho cả 3 thuật toán
-  \item \textbf{19 assert} đối chiếu từng con số bài giảng --- {\color{okgreen}\textbf{100\% ĐẠT}}
+  \item \textbf{19 assert} đối chiếu từng con số kỳ vọng trên ví dụ --- {\color{okgreen}\textbf{100\% ĐẠT}}
+  \item Phủ FIM, AprioriRare, AprioriInverse, CORI \& các độ đo
   \item[]
-  \item Phát hiện thiếu sót trong slide gốc: FIM liệt kê 10, \textbf{đúng là 11}\\
-        (sót \{pasta, orange, cake\}, $sup = 2$)
   \item \{pasta, cake\}: $lift = 1.0$, $bond = 0.5$ $\Rightarrow$ xác nhận mẫu giả bằng số
 \end{itemize}
-\note{Điểm tự hào: kiểm chứng tự động đủ chặt để bắt được lỗi của chính tài liệu
-gốc --- danh sách chữ thiếu một itemset mà hình lattice lại vẽ đúng. Bảng độ đo cặp
-cũng xác nhận bằng số trực giác mẫu giả ở slide 9. (1:00)
+\note{19 assert phủ toàn bộ: bảng FIM, ba thuật toán, bond, all-confidence,
+TID/DTID-List --- tất cả khớp kết quả tính tay trên ví dụ minh họa. Bảng độ đo cặp
+xác nhận bằng số trực giác mẫu giả ở slide 9. (1:00)
 Chuyển: ``Trên dữ liệu thật thì các đánh đổi lý thuyết hiện ra thế nào?''}
 \end{frame}
 
