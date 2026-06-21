@@ -303,6 +303,62 @@ def cori(db: TransactionDB, maxsup: float, minbond: float,
 
 
 # ---------------------------------------------------------------------------
+# CORI+ (ĐỀ XUẤT CẢI TIẾN) — cắt tỉa bằng cận trên all-confidence của bond
+# ---------------------------------------------------------------------------
+
+def cori_plus(db: TransactionDB, maxsup: float, minbond: float,
+              max_size: int | None = None
+              ) -> tuple[dict[Itemset, tuple[int, float]], dict[str, int]]:
+    """CORI+ : cải tiến CORI bằng một CẬN TRÊN RẺ cho bond.
+
+    Bổ đề (chứng minh trong báo cáo, mục 3.7): với mọi itemset X,
+        bond(X) ≤ allconf(X) = sup(X) / max_{i∈X} sup({i}),
+    vì dsup(X) = |∪ TID(i)| ≥ max_i |TID(i)| = max_i sup({i}).
+
+    Hệ quả: nếu allconf(X) < minbond thì CHẮC CHẮN bond(X) < minbond. Mà
+    allconf chỉ cần support các item đơn (tính sẵn) và sup(X) (đã có từ phép
+    giao TID-List) — KHÔNG cần dựng DTID-List (phép HỢP tốn kém trên dữ liệu
+    dày). Vì vậy CORI+ thử cận trên trước; chỉ những nút vượt qua cận trên mới
+    phải tính DTID-List để lấy bond chính xác.
+
+    Kết quả ĐỒNG NHẤT với cori() (đã kiểm chứng bằng assert), nhưng tránh được
+    phần lớn phép hợp DTID. Trả về (kết quả, thống kê) trong đó thống kê đếm số
+    phép hợp DTID đã thực hiện và số phép hợp đã NÉ được nhờ cận trên.
+    """
+    result: dict[Itemset, tuple[int, float]] = {}
+    items = sorted(db.items, key=lambda i: len(db.item_tids[i]))
+    single_sup = {i: len(db.item_tids[i]) for i in items}
+    stats = {"union_done": 0, "union_skipped": 0}
+
+    def expand(prefix: Itemset, tids: frozenset[int], dtids: frozenset[int],
+               start: int, prefix_max_single: int) -> None:
+        for idx in range(start, len(items)):
+            item = items[idx]
+            new_tids = tids & db.item_tids[item] if prefix else db.item_tids[item]
+            s = len(new_tids)
+            new_max_single = max(prefix_max_single, single_sup[item])
+            # CẬN TRÊN rẻ: allconf ≥ bond. Nếu allconf < minbond → cắt ngay,
+            # không cần dựng DTID-List.
+            if new_max_single and s / new_max_single < minbond:
+                stats["union_skipped"] += 1
+                continue
+            # vượt cận trên → mới tính DTID-List để lấy bond chính xác
+            new_dtids = dtids | db.item_tids[item]
+            stats["union_done"] += 1
+            b = s / len(new_dtids) if new_dtids else 0.0
+            if b < minbond:
+                continue
+            new_prefix = prefix + (item,)
+            if s < maxsup:
+                result[tuple(sorted(new_prefix))] = (s, b)
+            if max_size is None or len(new_prefix) < max_size:
+                expand(new_prefix, new_tids, new_dtids, idx + 1, new_max_single)
+
+    expand((), frozenset(), frozenset(), 0, 0)
+    return result, stats
+
+
+# ---------------------------------------------------------------------------
 # Đọc dữ liệu
 # ---------------------------------------------------------------------------
 
