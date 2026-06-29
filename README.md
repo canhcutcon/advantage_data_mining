@@ -46,6 +46,7 @@ Database
 │ 3 │ ⟨(b)(c)(d)⟩ │
 ├─────┼───────────────┤
 │ 4 │ ⟨(b)(a b)(c)⟩ │
+
 └─────┴───────────────┘
 
 minsup = 3 (a pattern must appear in ≥ 3 of the 4 sequences).
@@ -181,7 +182,8 @@ Chỉ còn 1 phần tử trong F₃ → không trộn được C₄ → DỪNG.
 
 PHẦN 2 — THUẬT TOÁN PrefixSpan
 
-▎ Cơ chế (slide The Algorithm of PrefixSpan): tìm item-1 thường xuyên → với mỗi tiền tố α, chiếu CSDL (lấy hậu tố sau lần xuất hiện đầu tiên của α) → đệ quy PrefixSpan(α, l+1, S|α).
+▎ Cơ chế (slide The Algorithm of PrefixSpan): tìm item-1 thường xuyên → với mỗi tiền tố α, chiếu CSDL (lấy hậu tố sau lần xuất hiện đầu tiên của α) → 
+đệ quy PrefixSpan(α, l+1, S|α).
 ▎ Ký hiệu \_x (slide Prefix and Suffix): item x nằm cùng itemset với item cuối của tiền tố (mở rộng itemset, tạo dạng (…x)).
 
 Bước 1 — Mẫu độ dài 1
