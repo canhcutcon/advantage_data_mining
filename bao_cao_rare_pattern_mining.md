@@ -808,7 +808,7 @@ preserving rare itemset mining," *Information Sciences*, art. 122572, 2025 (in p
 ```bash
 cd advantage_data_mining/code
 python3 run_experiments.py
-# - results/sanity_check.md        : 100% đối chiếu với slide (assert)
+# - results/sanity_check.md        : 100% đối chiếu với bài giảng (assert)
 # - results/mushroom_results.md    : bảng kết quả 3 thực nghiệm
 # - results/expA|expB|expC_*.csv   : dữ liệu thô
 # - results/mushroom_*.png         : hình 4.1, 4.2
