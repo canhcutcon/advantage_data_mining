@@ -23,6 +23,8 @@ advantage_data_mining/
 ## Chạy lại thực nghiệm
 
 ```bash
+
+source  ~/.venvs/advantage_data_mining/bin/activate
 cd code && python3 run_experiments.py
 ```
 

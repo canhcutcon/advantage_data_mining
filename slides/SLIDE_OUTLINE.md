@@ -1,7 +1,7 @@
 # Slide Outline — Khai thác mẫu hiếm (Rare Pattern Mining)
 
 - **Nguồn**: `bao_cao_rare_pattern_mining.md` (bài tập lớn môn Khai thác dữ liệu nâng cao)
-- **Loại talk**: oral, 15 phút, 17 slides
+- **Loại talk**: oral, 15 phút, 18 slides
 - **Ngôn ngữ**: tiếng Việt — engine xelatex
 - **Tỉ lệ**: 16:9 · **Màu**: NeurIPS (tím `#8B5CF6` / xanh `#2563EB`)
 - **Hình**: `figures/mushroom_experiments.png`, `figures/mushroom_runtime.png`
@@ -13,18 +13,21 @@
 | 3 | Động cơ: mẫu hiếm nhưng giá trị cao | 1:00 | 1:35 |
 | 4 | Vấn đề: hạ minsup là không đủ | 1:00 | 2:35 |
 | 5 | Ví dụ (4 giao dịch) | 0:45 | 3:20 |
-| 6 | Ba định nghĩa mẫu hiếm | 1:15 | 4:35 |
-| 7 | AprioriRare: tìm biên hiếm tối thiểu | 1:15 | 5:50 |
-| 8 | AprioriInverse: thu hẹp ngay từ đầu | 1:00 | 6:50 |
-| 9 | Mẫu giả: phổ biến ≠ đáng tin | 0:45 | 7:35 |
-| 10 | bond và all-confidence | 1:00 | 8:35 |
-| 11 | Null-invariance: vì sao lift thất bại | 0:45 | 9:20 |
-| 12 | CORI: hiếm + tương quan trong một lần duyệt | 1:15 | 10:35 |
-| 13 | Cài đặt & kiểm chứng 100% | 1:00 | 11:35 |
-| 14 | Exp A — Cái giá của việc đi xuyên vùng phổ biến | 1:00 | 12:35 |
-| 15 | Exp B & C — PRI rẻ, CORI giàu ngữ nghĩa | 1:15 | 13:50 |
-| 16 | Kết luận: ba đánh đổi | 0:50 | 14:40 |
-| 17 | Cảm ơn & Hỏi đáp | 0:20 | 15:00 |
+| 6 | Toàn cảnh: dòng chảy bài toán trên ví dụ | 0:40 | 4:00 |
+| 7 | Ba định nghĩa mẫu hiếm | 1:15 | 5:15 |
+| 8 | AprioriRare: tìm biên hiếm tối thiểu | 1:15 | 6:30 |
+| 9 | AprioriInverse: thu hẹp ngay từ đầu | 1:00 | 7:30 |
+| 10 | Mẫu giả: phổ biến ≠ đáng tin | 0:45 | 8:15 |
+| 11 | bond và all-confidence | 1:00 | 9:15 |
+| 12 | Null-invariance: vì sao lift thất bại | 0:45 | 10:00 |
+| 13 | CORI: hiếm + tương quan trong một lần duyệt | 1:15 | 11:15 |
+| 14 | Cài đặt & kiểm chứng 100% | 1:00 | 12:15 |
+| 15 | Exp A — Cái giá của việc đi xuyên vùng phổ biến | 1:00 | 13:15 |
+| 16 | Exp B & C — PRI rẻ, CORI giàu ngữ nghĩa | 1:15 | 14:30 |
+| 17 | Kết luận: ba đánh đổi | 0:50 | 15:20 |
+| 18 | Cảm ơn & Hỏi đáp | 0:20 | 15:40 |
+
+> Tổng 15:40 — nếu cần đúng 15:00: rút slide 6 còn 0:20 và slide 3 còn 0:40.
 
 ---
 
@@ -73,7 +76,15 @@
 
 **Nói**: Giới thiệu CSDL ví dụ của bài giảng — mọi thuật toán sau đều minh họa trên đây. *(0:45)*
 
-## Slide 6 — Ba định nghĩa mẫu hiếm
+## Slide 6 — Toàn cảnh: dòng chảy bài toán trên ví dụ
+
+- Sơ đồ 4 khối: **CSDL giao dịch** —(minsup)→ **Khai thác mẫu hiếm** —(minbond)→ **Lọc tương quan** → **CORI**
+- Dưới mỗi khối: kết quả cụ thể trên ví dụ (mRI/PRI; loại {pasta, cake}; {bread}, {cake}, {orange, cake})
+- Mỗi khối = một phần tiếp theo của bài
+
+**Nói**: Bản đồ toàn bài trên chính ví dụ 4 giao dịch — khán giả định vị được đang ở khối nào trong suốt phần còn lại. *(0:40)*
+
+## Slide 7 — Ba định nghĩa mẫu hiếm
 
 - **Infrequent**: sup < minsup — bùng nổ, chứa sup = 0
 - **Minimal rare (mRI)**: hiếm, mọi tập con đều phổ biến — *biên dưới vùng hiếm*
@@ -84,7 +95,7 @@
 
 **Nói**: Tâm điểm lý thuyết — nhấn hình ảnh "đường biên" trong dàn itemset. → "Mỗi định nghĩa có một thuật toán tương ứng." *(1:15)*
 
-## Slide 7 — AprioriRare: tìm biên hiếm tối thiểu
+## Slide 8 — AprioriRare: tìm biên hiếm tối thiểu
 
 - Duyệt theo mức như Apriori
 - Ứng viên sống sót qua prune mà **không phổ biến → chính là mRI**
@@ -94,7 +105,7 @@
 
 **Nói**: Giải thích điểm tinh tế: qua prune nghĩa là mọi tập con đều phổ biến → tự động là mRI. Gieo trước nhược điểm chi phí — Exp A sẽ định lượng. *(1:15)*
 
-## Slide 8 — AprioriInverse: thu hẹp ngay từ đầu
+## Slide 9 — AprioriInverse: thu hẹp ngay từ đầu
 
 - Hai ngưỡng (minsup, maxsup)
 - **Loại mọi item phổ biến ngay bước khởi tạo**
@@ -104,7 +115,7 @@
 
 **Nói**: Đối lập với AprioriRare: không gian nhỏ hơn hẳn nhưng định nghĩa hẹp hơn. Ví dụ mẫu lai bị bỏ sót: {bệnh hiếm, triệu chứng phổ biến}. *(1:00)*
 
-## Slide 9 — Mẫu giả: phổ biến ≠ đáng tin
+## Slide 10 — Mẫu giả: phổ biến ≠ đáng tin
 
 - {pasta, cake} xuất hiện 50% giao dịch
 - Nhưng pasta có mặt trong **mọi** giao dịch
@@ -113,7 +124,7 @@
 
 **Nói**: Chuyển mạch sang nửa thứ hai của câu chuyện: hiếm thôi chưa đủ, còn cần "thật". *(0:45)*
 
-## Slide 10 — bond và all-confidence
+## Slide 11 — bond và all-confidence
 
 - **bond(X) = sup(X) / dsup(X)** — tỉ lệ giao dịch "liên quan" chứa toàn bộ X
 - bond = 1: các mục **luôn** đi cùng nhau
@@ -123,7 +134,7 @@
 
 **Nói**: Hai độ đo chính của bài giảng. Nhấn tính anti-monotone vì CORI sẽ dùng nó để cắt tỉa. *(1:00)*
 
-## Slide 11 — Null-invariance: vì sao lift thất bại
+## Slide 12 — Null-invariance: vì sao lift thất bại
 
 - Null transaction: giao dịch không chứa mục nào của mẫu
 - χ², lift bị **bóp méo** bởi hàng triệu giao dịch không liên quan
@@ -132,7 +143,7 @@
 
 **Nói**: Lý do sâu xa để chọn bond/allconf cho mẫu hiếm — dữ liệu thưa toàn null transactions. *(0:45)*
 
-## Slide 12 — CORI: hiếm + tương quan trong một lần duyệt
+## Slide 13 — CORI: hiếm + tương quan trong một lần duyệt
 
 - Rare correlated: **sup(X) < maxsup VÀ bond(X) ≥ minbond**
 - Hai ràng buộc đối ngẫu: hiếm = monotone · bond = anti-monotone
@@ -142,7 +153,7 @@
 
 **Nói**: Đỉnh lý thuyết của talk — hai dòng kỹ thuật hội tụ. Giải thích phép giao/hợp TID khi nối hai itemset. *(1:15)*
 
-## Slide 13 — Cài đặt & kiểm chứng 100%
+## Slide 14 — Cài đặt & kiểm chứng 100%
 
 - Python 3.13, **chỉ thư viện chuẩn**; TID-set dùng chung cho cả 3 thuật toán
 - **19 assert** đối chiếu từng con số kỳ vọng trên ví dụ — **100% ĐẠT**
@@ -151,16 +162,16 @@
 
 **Nói**: 19 assert phủ toàn bộ bảng FIM, ba thuật toán và các độ đo — tất cả khớp kết quả tính tay trên ví dụ minh họa. *(1:00)*
 
-## Slide 14 — Exp A: cái giá của việc đi xuyên vùng phổ biến
+## Slide 15 — Exp A: cái giá của việc đi xuyên vùng phổ biến
 
 - **Hình**: `mushroom_runtime.png` (≥60% slide)
 - UCI Mushroom: 8 124 giao dịch, 118 item, dày
 - minsup 0.6 → 0.2: #frequent tăng **~890×** (51 → 45 391)
 - #mRI chỉ tăng **~8×** (122 → 986)
 
-**Nói**: mRI là biểu diễn gọn, nhưng chi phí bị chi phối bởi vùng phổ biến — đúng như lý thuyết slide 7 dự báo. *(1:00)*
+**Nói**: mRI là biểu diễn gọn, nhưng chi phí bị chi phối bởi vùng phổ biến — đúng như lý thuyết slide AprioriRare dự báo. *(1:00)*
 
-## Slide 15 — Exp B & C: PRI rẻ, CORI giàu ngữ nghĩa
+## Slide 16 — Exp B & C: PRI rẻ, CORI giàu ngữ nghĩa
 
 - **Hình**: `mushroom_experiments.png` (≥60% slide)
 - AprioriInverse: **mili-giây** — alphabet hiếm rất nhỏ (không phải benchmark cùng điều kiện)
@@ -169,7 +180,7 @@
 
 **Nói**: Mẫu bond = 1 trên Mushroom: 36 cây nấm mùi mốc *luôn* đồng thời không vòng cuống + cuống màu quế — loại tri thức FIM không bao giờ chạm tới. *(1:15)*
 
-## Slide 16 — Kết luận: ba đánh đổi
+## Slide 17 — Kết luận: ba đánh đổi
 
 - **mRI gọn nhưng đắt** — phải duyệt toàn vùng phổ biến
 - **PRI rẻ nhưng hẹp** — bỏ sót mẫu lai
@@ -178,7 +189,7 @@
 
 **Nói**: Thông điệp mang về: không có định nghĩa hiếm "đúng" duy nhất — chỉ có đánh đổi; null-invariance là bắt buộc với dữ liệu thưa. *(0:50)*
 
-## Slide 17 — Cảm ơn & Hỏi đáp
+## Slide 18 — Cảm ơn & Hỏi đáp
 
 - Tóm tắt 1 dòng: 3 định nghĩa · 3 thuật toán · kiểm chứng 100% · Mushroom
 - Mã nguồn & kết quả: `advantage_data_mining/code`, `results/`

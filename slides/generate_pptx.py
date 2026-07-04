@@ -58,6 +58,17 @@ SLIDES = [
      "CSDL 4 giao dịch theo bài giảng. Pasta có mặt mọi giao dịch — chi tiết này "
      "quay lại ở phần mẫu giả. (0:45)"),
 
+    ("Toàn cảnh: dòng chảy bài toán trên ví dụ", [
+        ("CSDL 4 giao dịch —[minsup]→ Khai thác mẫu hiếm —[minbond]→ Lọc tương quan → CORI", 0, ACCENT, True),
+        ("Bước 1 — khai thác hiếm: AprioriRare → mRI = {bread}, {lemon, cake}; AprioriInverse → PRI = {bread}, …", 0, None, False),
+        ("Bước 2 — lọc mẫu giả: loại {pasta, cake} vì lift = 1, bond = 0.5 (đi cùng nhau chỉ do pasta có mặt khắp nơi)", 0, RED, False),
+        ("Kết quả CORI: {bread}, {cake}, {orange, cake} — vừa hiếm vừa thật sự gắn kết", 0, GREEN, True),
+        ("Các phần sau đi sâu vào từng khối trên chính ví dụ này", 0, None, False),
+    ], None,
+     "Bản đồ toàn bài trên ví dụ 4 giao dịch: từ CSDL thô → định nghĩa hiếm (minsup) "
+     "→ thuật toán khai thác → độ đo lọc mẫu giả → CORI. Khán giả định vị được mình "
+     "đang ở khối nào trong suốt phần còn lại. (0:40)"),
+
     ("Ba định nghĩa mẫu hiếm", [
         ("Infrequent: sup < minsup — bùng nổ, chứa cả sup = 0", 0, None, False),
         ("Minimal rare (mRI): hiếm, mọi tập con đều phổ biến", 0, None, True),
